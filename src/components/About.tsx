@@ -3,7 +3,10 @@ import SectionHeading from "./SectionHeading";
 
 export default function About() {
   return (
-    <section id="about" className="scroll-mt-16 px-4 py-16 sm:scroll-mt-20 sm:px-6 sm:py-20 md:py-24">
+    <section
+      id="about"
+      className="scroll-mt-16 px-4 py-16 sm:scroll-mt-20 sm:px-6 sm:py-20 md:py-24"
+    >
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           title="About"
