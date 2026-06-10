@@ -10,7 +10,7 @@ export default function About() {
           subtitle="A little bit about who I am and what I do."
         />
         <div className="grid gap-8 md:grid-cols-2 md:gap-10">
-          <p className="text-base leading-relaxed text-white/90 sm:text-lg">
+          <p className="text-justify text-base leading-relaxed text-white/90 sm:text-lg">
             {about.summary}
           </p>
           <ul className="space-y-3 sm:space-y-4">

@@ -11,12 +11,12 @@ export const personalInfo = {
 
 export const about = {
   summary: `MS Computer Science student at California State University, East Bay with hands-on experience
-    building production backends, distributed systems, and AI-powered applications. I specialize in
+    building production backends, distributed systems, and AI-powered applications. I specialize in Next.js,
     FastAPI, Go, and cloud-native architectures — from embedded databases to multi-agent LLM pipelines.`,
   highlights: [
-    "Production backend development with FastAPI, Celery, Redis, and AWS",
-    "Distributed systems & embedded databases in Go",
-    "AI/ML pipelines with LangGraph, RAG, and LLM orchestration",
+    "Backend engineer focused on scalable, reliable systems.",
+    "Building AI-powered applications and LLM workflows.",
+    "Shipping production-ready software with Docker, AWS, and CI/CD.",
   ],
 };
 
