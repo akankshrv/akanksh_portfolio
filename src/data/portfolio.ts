@@ -142,11 +142,26 @@ export const education = [
   },
 ];
 
+export type ProjectCategory =
+  | "ai-full-stack"
+  | "machine-learning"
+  | "distributed-systems";
+
+export type ProjectFilterId = ProjectCategory | "all";
+
+export const projectFilters: { id: ProjectFilterId; label: string }[] = [
+  { id: "all", label: "All" },
+  { id: "ai-full-stack", label: "AI Full Stack" },
+  { id: "machine-learning", label: "Machine Learning" },
+  { id: "distributed-systems", label: "Distributed Systems" },
+];
+
 export const projects = [
   {
     id: 1,
     title: "DBgo – Embedded NoSQL Database",
     github: "https://github.com/akankshrv/DBgo",
+    category: "distributed-systems" as ProjectCategory,
     highlights: [
       "Engineered a lightweight embedded NoSQL database in Go using bbolt, supporting 1,000+ concurrent clients with optimized disk-backed key–value storage and efficient memory usage.",
       "Built ACID-compliant transaction management and custom JSON encoders/decoders, writing unit and integration tests with Go's testing package to ensure production-ready code quality.",
@@ -158,6 +173,7 @@ export const projects = [
     id: 2,
     title: "CacheGo – Distributed In-Memory Cache",
     github: "https://github.com/akankshrv/CacheGo",
+    category: "distributed-systems" as ProjectCategory,
     highlights: [
       "Architected a distributed in-memory cache in Go using TCP-based communication, achieving 2,000+ requests/sec throughput with low-latency key–value operations.",
       "Built a self-organizing distributed cluster using the Raft algorithm, supporting 100+ nodes with ~500ms leader election and sub-millisecond replication updates for high availability.",
@@ -169,6 +185,7 @@ export const projects = [
     id: 3,
     title: "Moodify – Emotion-Based Music Recommendation",
     github: "https://github.com/akankshrv/Moodify",
+    category: "ai-full-stack" as ProjectCategory,
     highlights: [
       "Built an AI-powered music recommendation platform with Pinterest OAuth, deployed on GCP using Cloud Run and GCR for scalable containerized access.",
       "Leveraged Google Vision API to extract emotional signals from images, processed through a generative AI model to map emotions to Spotify musical attributes.",
@@ -179,6 +196,7 @@ export const projects = [
     id: 4,
     title: "Vision Up – Virtual Voice Assistant",
     github: "https://github.com/akankshrv/VisionUp",
+    category: "machine-learning" as ProjectCategory,
     highlights: [
       "Trained a ResNet-based facial recognition and emotion detection model using TensorFlow, enabling real-time interpretation of social interactions with high accuracy for visually impaired users.",
       "Deployed YOLOv8 for real-time multi-object identification with sub-second inference, integrated with OpenAI and Groq APIs to power voice-triggered situational awareness queries.",
@@ -189,6 +207,7 @@ export const projects = [
     id: 5,
     title: "DNSgo – High-Performance DNS Resolver",
     github: "https://github.com/akankshrv/DNSgo",
+    category: "distributed-systems" as ProjectCategory,
     highlights: [
       "Developed a high-performance DNS resolver from scratch, implementing recursive query handling and efficient domain name resolution using Go's dnsmessage package, resulting in improved lookup speeds and reliability.",
       "Architected an intelligent DNS discovery system that dynamically identifies and validates authoritative nameservers, enabling more accurate and resilient domain resolution across diverse network conditions.",
@@ -199,10 +218,35 @@ export const projects = [
     id: 6,
     title: "Translatron – Transformer-Based Translation Model",
     github: "https://github.com/akankshrv/translatron",
+    category: "machine-learning" as ProjectCategory,
     highlights: [
       "Built a Transformer architecture from scratch for English-to-Italian translation, leveraging deep learning frameworks and NLP methodologies.",
       "Applied positional encoding in log space for improved numerical stability and integrated dropout for regularization, enhancing performance and scalability.",
       "Implemented multi-head attention, encoder-decoder layers, and feed-forward networks achieving 92% training accuracy on 30,000 tokens, leveraging transfer learning and contextual embeddings.",
+    ],
+  },
+  {
+    id: 7,
+    title: "synthAI – Perplexity-Style Hybrid RAG Search",
+    github: "https://github.com/akankshrv/synthAI",
+    category: "ai-full-stack" as ProjectCategory,
+    highlights: [
+      "Built a hybrid RAG retrieval pipeline combining dense BGE embeddings and BM25 sparse search through RRF fusion, cross-encoder reranking, and MMR diversity, on top of a query rewrite plus decomposition flow (up to 3 sub-queries, deduplicated at a 0.92 similarity threshold).",
+      "Shipped a full-stack Perplexity-style search app: FastAPI backend streaming live pipeline stage events and token output over Server-Sent Events, paired with a Next.js frontend for multi-turn threads, pipeline stage visualization, and source links.",
+      "Designed a two-layer storage and cache system (Chroma vector store with content-hash dedup and a 72-hour TTL purge, Redis page cache with a 24-hour TTL) to skip redundant fetch and embed calls across sessions.",
+      "Built a Ragas-based evaluation harness (faithfulness, answer relevancy, context precision) with ablation flags to isolate the impact of reranking, BM25, and MMR, backed by production observability through JSONL pipeline traces and token count tracking.",
+    ],
+  },
+  {
+    id: 8,
+    title: "CT Denoising GAN – Medical Image Denoising",
+    github: "https://github.com/akankshrv/ct-denoising-gan",
+    category: "machine-learning" as ProjectCategory,
+    highlights: [
+      "Built a GAN pipeline for medical image denoising, training a residual CNN generator (RED-CNN with 8 skip-connection blocks) against a U-Net discriminator to suppress noise in CT scans while preserving diagnostically relevant structure.",
+      "Designed a custom composite loss function combining pixel-level MSE, a Sobel-based gradient loss (weighted at 20x) for edge sharpness, and a least-squares adversarial term, enabling the model to balance perceptual quality with structural fidelity.",
+      "Iterated from baseline to an improved architecture by integrating channel attention into the generator (REDCNN-Attn) and adding an SSIM loss term, then rigorously compared both models on a held-out validation split using PSNR, SSIM, and RMSE.",
+      "Engineered a robust training data pipeline with paired noisy/clean CT scan loading, random patch extraction (64x64), horizontal/vertical augmentation, and negative-stride buffer fixes, enabling efficient batch training on GPU with PyTorch DataLoader.",
     ],
   },
 ];

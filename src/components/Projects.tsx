@@ -1,7 +1,21 @@
-import { projects } from "@/data/portfolio";
+"use client";
+
+import { useState } from "react";
+import {
+  projectFilters,
+  projects,
+  type ProjectFilterId,
+} from "@/data/portfolio";
 import SectionHeading from "./SectionHeading";
 
 export default function Projects() {
+  const [activeFilter, setActiveFilter] = useState<ProjectFilterId>("all");
+
+  const filteredProjects =
+    activeFilter === "all"
+      ? projects
+      : projects.filter((project) => project.category === activeFilter);
+
   return (
     <section
       id="projects"
@@ -12,8 +26,38 @@ export default function Projects() {
           title="Projects"
           subtitle="Selected work and side projects I've built."
         />
+
+        <div
+          className="-mx-4 mb-6 overflow-x-auto px-4 pb-1 [-ms-overflow-style:none] [scrollbar-width:none] sm:mx-0 sm:mb-8 sm:overflow-visible sm:px-0 [&::-webkit-scrollbar]:hidden"
+          role="tablist"
+          aria-label="Filter projects by category"
+        >
+          <div className="flex w-max gap-2 sm:w-auto sm:flex-wrap">
+            {projectFilters.map((filter) => {
+              const isActive = activeFilter === filter.id;
+
+              return (
+                <button
+                  key={filter.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  onClick={() => setActiveFilter(filter.id)}
+                  className={`shrink-0 rounded-full border px-4 py-2.5 text-sm font-medium transition-colors sm:px-5 ${
+                    isActive
+                      ? "border-accent bg-accent/15 text-accent"
+                      : "border-white/10 bg-surface text-white/70 hover:border-accent/40 hover:text-white"
+                  }`}
+                >
+                  {filter.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
         <div className="grid gap-4 sm:gap-6 md:grid-cols-2">
-          {projects.map((project) => (
+          {filteredProjects.map((project) => (
             <article
               key={project.id}
               className="group flex flex-col rounded-xl border border-white/10 bg-surface p-4 transition-colors hover:border-accent/40 sm:p-6"
